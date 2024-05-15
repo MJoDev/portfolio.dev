@@ -17,12 +17,11 @@ const { description, title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="https://pbs.twimg.com/profile_images/1786723102933569536/dcTx3f6M_400x400.jpg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<div class="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)]"></div>
 		<Header/>
 		<slot/>
 		<Footer/>
@@ -38,7 +37,15 @@ const { description, title } = Astro.props;
 		scroll-behavior: smooth;
 	}
 	body{
-		
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+		-webkit-animation: bg-scrolling-reverse 0.92s infinite;
+		-moz-animation: bg-scrolling-reverse 0.92s infinite;
+		-o-animation: bg-scrolling-reverse 0.92s infinite;
+		animation: bg-scrolling-reverse 0.92s infinite;
+		-webkit-animation-timing-function: linear;
+		-moz-animation-timing-function: linear;
+		-o-animation-timing-function: linear;
+		animation-timing-function: linear;
 		display: flex;
 		flex-direction: column;
 		background-color: antiquewhite;
@@ -50,4 +57,45 @@ const { description, title } = Astro.props;
 			scroll-behavior: auto;
 		}
 	}
+	@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+	}
+	}
+	@-moz-keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+	}
+	@-o-keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+	}
+	@keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+	}
+	@-webkit-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+	}
+	@-moz-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+	}
+	@-o-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+	}
+	@keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+	}
+
 </style>

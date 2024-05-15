@@ -1,22 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Badge from '../components/Badge.astro';
-import LinkedIn from '../icons/LinkedIn.astro'
-import SocialPill from '../components/SocialPill.astro';
-import Github from '../icons/Github.astro';
-import MailUp from '../icons/MailUp.astro';
-import Experience from '../components/Experience.astro';
-import SectionContainer from '../components/SectionContainer.astro';
-import BriefCase from '../icons/BriefCase.astro';
-import CodeIcon from '../icons/Code.astro';
-import Projects from '../components/Projects.astro';
+	import Layout from '../layouts/Layout.astro';
+	import Badge from '../components/Badge.astro';
+	import LinkedIn from '../icons/LinkedIn.astro'
+	import SocialPill from '../components/SocialPill.astro';
+	import Github from '../icons/Github.astro';
+	import MailUp from '../icons/MailUp.astro';
+	import Experience from '../components/Experience.astro';
+	import SectionContainer from '../components/SectionContainer.astro';
+	import BriefCase from '../icons/BriefCase.astro';
+	import CodeIcon from '../icons/Code.astro';
+	import Projects from '../components/Projects.astro';
 ---
 
 <Layout title="Moisés Jimenez Portfolio - Full-Stack Developer" description="Hire Moises Jimenez to create your web application. Full-Stack developer specialized in creating creative applications and solutions.">
 	<main class="px-2">
 		<SectionContainer class="py-44 pb-21">
-			<h1 class="lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 text-3xl">Hey, I am Moisés <a href="https://linkedin.com/in/stoppedmjdev" target="_blank" class="flex justify-center items-center"><Badge>Available for hire </Badge></a></h1>
+			<h1 class="lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 text-3xl">Hey, I'm <span id="text-container"></span> <a href="https://linkedin.com/in/stoppedmjdev" target="_blank" class="flex justify-center items-center"><Badge>Available for hire </Badge></a></h1>
 			<h2 class="lg:text-xl text-wrap">4 years of experience. Full-Stack Developer based in Barinas, Venezuela. <span class="opacity-80">I specialize in creating applications and creative solutions. </span> </h2>
 			<nav class="flex gap-2 mt-4 flex-wrap">
 				<SocialPill href="https://www.linkedin.com/in/stoppedmjdev">
@@ -43,8 +42,49 @@ import Projects from '../components/Projects.astro';
 			<h2 class="text-2xl front-semibold mb-8 flex gap-x-2 items-center"> 
 				<CodeIcon class="size-6"/>
 				Projects</h2>
+				
 			<Projects/>
 		</SectionContainer>
 	</main>
 </Layout>
+<style>
+	#text-container {
+	border-right: 4px solid;
+    white-space: nowrap;
+    overflow: hidden;
+	animation: blink .5s infinite step-end alternate;
+	}
+	@keyframes blink {
+		50% { border-color: transparent}
+	}
+</style>
+<script>
+	const textContainer = document.getElementById('text-container');
+	const texts = ['Moisés Jimenez', 'a Developer']; // Array de textos a mostrar
+	const typingSpeed = 50; // Velocidad de escritura en milisegundos
 
+	let index = 0;
+	let charIndex = 0;
+	let isDeleting = false;
+
+	function type() {
+			const currentText = texts[index];
+			if (!isDeleting && charIndex < currentText.length) {
+				textContainer!.innerHTML += currentText.charAt(charIndex);
+				charIndex++;
+				setTimeout(type, typingSpeed);
+			} else if (isDeleting && charIndex > 0) {
+				textContainer!.innerHTML = currentText.substring(0, charIndex - 1);
+				charIndex--;
+				setTimeout(type, typingSpeed / 2);
+			} else {
+				isDeleting = !isDeleting;
+				if (!isDeleting) {
+					index = (index + 1) % texts.length;
+				}
+				setTimeout(type, 1000); // Tiempo de espera antes de empezar a escribir el siguiente texto
+			}
+		}
+
+		type();
+</script>
