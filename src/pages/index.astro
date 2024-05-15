@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import LinkedIn from '../icons/LinkedIn.astro'
+import SocialPill from '../components/SocialPill.astro';
+import Github from '../icons/Github.astro';
+import MailUp from '../icons/MailUp.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import BriefCase from '../icons/BriefCase.astro';
+import CodeIcon from '../icons/Code.astro';
+import Projects from '../components/Projects.astro';
+---
+
+<Layout title="Moisés Jimenez Portfolio - Full-Stack Developer" description="Hire Moises Jimenez to create your web application. Full-Stack developer specialized in creating creative applications and solutions.">
+	<main class="px-2">
+		<SectionContainer class="py-44 pb-21">
+			<h1 class="lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 text-3xl">Hey, I am Moisés <a href="https://linkedin.com/in/stoppedmjdev" target="_blank" class="flex justify-center items-center"><Badge>Available for hire </Badge></a></h1>
+			<h2 class="lg:text-xl text-wrap">4 years of experience. Full-Stack Developer based in Barinas, Venezuela. <span class="opacity-80">I specialize in creating applications and creative solutions. </span> </h2>
+			<nav class="flex gap-2 mt-4 flex-wrap">
+				<SocialPill href="https://www.linkedin.com/in/stoppedmjdev">
+					<LinkedIn class=" size-4 lg:size-6"/>
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://github.com/MJoDev">
+					<Github class="size-6"/>
+					Github
+				</SocialPill>
+				<SocialPill href="mailto:stoppedmjdev@gmail.com">
+					<MailUp class="size-6"/>
+					stoppedmjdev@gmail.com
+				</SocialPill>
+			</nav>	
+		</SectionContainer>
+		<SectionContainer id="experience" class="pb-12">
+			<h2 class="text-2xl front-semibold mb-8 flex gap-x-2 items-center"> 
+			<BriefCase class="size-6"/>
+			Laboral Experience</h2>
+			<Experience/>
+		</SectionContainer>
+		<SectionContainer id="projects" class="py-10">
+			<h2 class="text-2xl front-semibold mb-8 flex gap-x-2 items-center"> 
+				<CodeIcon class="size-6"/>
+				Projects</h2>
+			<Projects/>
+		</SectionContainer>
+	</main>
+</Layout>
+
