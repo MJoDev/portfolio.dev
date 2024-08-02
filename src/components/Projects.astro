@@ -6,7 +6,9 @@ import HTML from "../icons/HTML.astro"
 import Java from "../icons/Java.astro"
 import JavaScript from "../icons/JavaScript.astro"
 import MongoDB from "../icons/MongoDB.astro"
+import Nextjs from "../icons/Nextjs.astro"
 import NodeJs from "../icons/NodeJs.astro"
+import React from "../icons/React.astro"
 import Tailwind from "../icons/Tailwind.astro"
 import TypeScript from "../icons/TypeScript.astro"
 
@@ -61,16 +63,34 @@ import TypeScript from "../icons/TypeScript.astro"
             name: 'TypeScript',
             class: 'bg-white',
             icon: TypeScript
+        },
+        NEXT: {
+            name: 'Next.js',
+            class: 'bg-white',
+            icon: Nextjs
+        },
+        REACT: {
+            name: 'React',
+            class: 'bg-white',
+            icon: React
         }
     }
     const PROJECTS = [
+        {
+            title: 'NeoIrr',
+            description: 'A web application for health device control, It is a web API designed to interact with a device that has two sensors: one for linear positioning and another that measures the level of irradiance in the blue spectrum of light.',
+            link: '#',
+            github: '#',
+            image: '/projects/neoirr.png',
+            tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND]
+        },
         {
             title: 'QRonos Attendance Control System',
             description: 'Project made in Angular CLI 16.1.6 to control attendance with QR.',
             link: '#',
             github: '#',
             image: '/projects/chrono.png',
-            tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.BOOTSTRAP, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
+            tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'Livestock Control System',
@@ -78,7 +98,7 @@ import TypeScript from "../icons/TypeScript.astro"
             link: '#',
             github: '#',
             image: '/projects/live.png',
-            tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.BOOTSTRAP, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
+            tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'JavaChess - A chess made in java',
