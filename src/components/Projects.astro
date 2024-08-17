@@ -2,6 +2,7 @@
 import Angular from "../icons/Angular.astro"
 import Bootstrap from "../icons/Bootstrap.astro"
 import CSSIcon from "../icons/CSSIcon.astro"
+import Github from "../icons/Github.astro"
 import HTML from "../icons/HTML.astro"
 import Java from "../icons/Java.astro"
 import JavaScript from "../icons/JavaScript.astro"
@@ -11,6 +12,7 @@ import NodeJs from "../icons/NodeJs.astro"
 import React from "../icons/React.astro"
 import Tailwind from "../icons/Tailwind.astro"
 import TypeScript from "../icons/TypeScript.astro"
+import Badge from "./Badge.astro"
 
     const TAGS = {
         ANGULAR: {
@@ -79,32 +81,26 @@ import TypeScript from "../icons/TypeScript.astro"
         {
             title: 'NeoIrr',
             description: 'A web application for health device control, It is a web API designed to interact with a device that has two sensors: one for linear positioning and another that measures the level of irradiance in the blue spectrum of light.',
-            link: '#',
-            github: '#',
             image: '/projects/neoirr.png',
             tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.REACT, TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'QRonos Attendance Control System',
             description: 'Project made in Angular CLI 16.1.6 to control attendance with QR.',
-            link: '#',
-            github: '#',
             image: '/projects/chrono.png',
             tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'Livestock Control System',
             description: 'Livestock control system for "La Hacienda" farm. MEAN stack project. CRUD.',
-            link: '#',
-            github: '#',
             image: '/projects/live.png',
             tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'JavaChess - A chess made in java',
-            description: 'Project made in Angular CLI 16.1.6 to control attendance with QR.',
-            link: '#',
-            github: '#',
+            description: 'Development of chess in Java from the creation of a functional engine to graphical representation. Two player chess game.',
+            link: 'https://github.com/MJoDev/JavaChess',
+            github: 'https://github.com/MJoDev/JavaChess',
             image: '/projects/chess.png',
             tags: [TAGS.JAVA]
         }
@@ -112,11 +108,15 @@ import TypeScript from "../icons/TypeScript.astro"
 ---
 
 {
-    (PROJECTS.map(({title, description, tags, image}) => (
+    (PROJECTS.map(({title, github, description, tags, image}) => (
 
         <article class="mb-14">
             <h3 class="text-2xl font-semibold mb-2">{title}</h3>
+            {github && <span class="mt-2 mb-2 flex">
+                <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white`}><Github class="size-4"/>Github Repository</a>
+            </span>}
             <p class="text-lg mb-4 text-pretty">{description}</p>
+            
             <ul class="flex gap-x-2 flex-row flex-wrap">
                 {tags.map(tag => (
                     <li class="mt-2 mb-2">
