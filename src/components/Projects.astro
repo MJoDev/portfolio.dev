@@ -113,7 +113,7 @@ import Badge from "./Badge.astro"
         <article class="mb-14">
             <h3 class="text-2xl font-semibold mb-2">{title}</h3>
             {github && <span class="mt-2 mb-2 flex">
-                <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white`}><Github class="size-4"/>Github Repository</a>
+                <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white hover:py-1.5 hover:px-2.5 hover:bg-gray-600 transition-all`}><Github class="size-4"/>Github Repository</a>
             </span>}
             <p class="text-lg mb-4 text-pretty">{description}</p>
             
