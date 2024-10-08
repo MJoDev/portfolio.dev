@@ -13,6 +13,7 @@ import React from "../icons/React.astro"
 import Tailwind from "../icons/Tailwind.astro"
 import TypeScript from "../icons/TypeScript.astro"
 import Badge from "./Badge.astro"
+import Stro from "../icons/Stro.astro"
 
     const TAGS = {
         ANGULAR: {
@@ -75,6 +76,11 @@ import Badge from "./Badge.astro"
             name: 'React',
             class: 'bg-white',
             icon: React
+        },
+        ASTRO: {
+            name: 'Astro',
+            class: 'bg-white',
+            icon: Stro
         }
     }
     const PROJECTS = [
@@ -86,49 +92,130 @@ import Badge from "./Badge.astro"
         },
         {
             title: 'QRonos Attendance Control System',
-            description: 'Project made in Angular CLI 16.1.6 to control attendance with QR.',
+            description: 'This project is a web application developed with Angular CLI 16.1.6, designed to facilitate attendance tracking through the use of QR codes. Its main objective is to optimize the process of registering attendance at events, classes, and other activities.',
             image: '/projects/chrono.png',
             tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'Livestock Control System',
-            description: 'Livestock control system for "La Hacienda" farm. MEAN stack project. CRUD.',
+            description: 'This project is a Livestock Control System developed using the MEAN stack for "La Hacienda" farm. The system is designed to efficiently manage and monitor livestock, facilitating tasks such as tracking animal health, breeding, and overall farm productivity.',
             image: '/projects/live.png',
             tags: [TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.BOOTSTRAP, TAGS.TAILWIND]
         },
         {
             title: 'JavaChess - A chess made in java',
-            description: 'Development of chess in Java from the creation of a functional engine to graphical representation. Two player chess game.',
+            description: 'Development of a two-player chess game in Java, encompassing the creation of a functional chess engine and a graphical user interface (GUI) for an engaging user experience. The goal is to provide players with a complete chess experience.',
             link: 'https://github.com/MJoDev/JavaChess',
             github: 'https://github.com/MJoDev/JavaChess',
             image: '/projects/chess.png',
             tags: [TAGS.JAVA]
+        },
+        {
+            title: 'AstroPaint - A Micorsoft paint made in Astro',
+            description: 'AstroPaint is a lightweight digital painting application, developed in just 30 minutes using Astro, and Core JavaScript, HTML and CSS. The goal was to demonstrate rapid development capabilities while focusing on core functionalities.',
+            link: 'https://astropaint.netlify.app/',
+            github: 'https://github.com/MJoDev/AstroPaint',
+            image: '/projects/astropaint.png',
+            tags: [TAGS.JAVASCRIPT, TAGS.HTML, TAGS.CSS, TAGS.ASTRO]
         }
     ]
 ---
 
-{
-    (PROJECTS.map(({title, github, description, tags, image}) => (
 
-        <article class="mb-14">
-            <h3 class="text-2xl font-semibold mb-2">{title}</h3>
-            {github && <span class="mt-2 mb-2 flex">
-                <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white hover:py-1.5 hover:px-2.5 hover:bg-gray-600 transition-all`}><Github class="size-4"/>Github Repository</a>
-            </span>}
-            <p class="text-lg mb-4 text-pretty">{description}</p>
-            
-            <ul class="flex gap-x-2 flex-row flex-wrap">
-                {tags.map(tag => (
-                    <li class="mt-2 mb-2">
-                        <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
-                            <tag.icon class="size-4"/>
-                            {tag.name}
-                        </span>
-                    </li>
-                ))}
-            </ul>
-            <img src={image} alt={`Screenshot of the project: ${title}`} class="rounded shadow-2xl shadow-black"/>
-        </article>
-    )) )
+
+<section class="embla">
+    <div class="embla__viewport">
+      <div class="embla__container px-4 pl-4 ">       
+        {
+            (PROJECTS.map(({title, github, description, tags, image}) => (
+                <article class="embla__slide">
+                    <div>
+                    <h3 class="text-2xl font-semibold mb-2">{title}</h3>
+                   
+                    <p class="text-lg mb-4 text-pretty">{description}</p>
+                    
+                    <ul class="flex gap-x-2 flex-row flex-wrap">
+                        {tags.map(tag => (
+                            <li class="mt-2 mb-2">
+                                <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                                    <tag.icon class="size-4"/>
+                                    {tag.name}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                    <img src={image} alt={`Screenshot of the project: ${title}`} class="rounded-lg shadow-1xl"/>
+                    </div>
+                    {github && <span class="mt-2 mb-2 flex">
+                        <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white hover:py-1.5 hover:px-2.5 hover:bg-gray-600 transition-all`}><Github class="size-4"/>Github Repository</a>
+                    </span>}
+                </article>
+            )) )
+        }
+       
+      </div>
+    </div>
+
+    <div class="embla__controls sm:mb-98">
+      <div class="embla__buttons">
+        <button class="embla__button embla__button--prev" type="button">
+          <svg class="embla__button__svg" viewBox="0 0 532 532">
+            <path
+              fill="currentColor"
+              d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+            ></path>
+          </svg>
+        </button>
+
+        <button class="embla__button embla__button--next" type="button">
+          <svg class="embla__button__svg" viewBox="0 0 532 532">
+            <path
+              fill="currentColor"
+              d="M176.34 520.646c-13.793 13.805-36.208 13.805-50.001 0-13.785-13.804-13.785-36.238 0-50.034L330.78 266 126.34 61.391c-13.785-13.805-13.785-36.239 0-50.044 13.793-13.796 36.208-13.796 50.002 0 22.928 22.947 206.395 206.507 229.332 229.454a35.065 35.065 0 0 1 10.326 25.126c0 9.2-3.393 18.26-10.326 25.2-45.865 45.901-206.404 206.564-229.332 229.52Z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+</section>
+
+<script>
+    import EmblaCarousel from 'embla-carousel'
+    import { addPrevNextBtnsClickHandlers } from '../carousel/EmblaCarouselArrowButton'
+    import { addDotBtnsAndClickHandlers } from '../carousel/EmblaCarouselDotButton'
+    import '../carousel/css/base.css'
+    import '../carousel/css/sandbox.css'
+    import '../carousel/css/embla.css'
+
+    const OPTIONS = { dragFree: true, loop: true }
+
+
+    const emblaNode = document.querySelector('.embla')
+    if(emblaNode) {
+       
+        const viewportNode = emblaNode.querySelector('.embla__viewport')
+        const prevBtnNode = emblaNode.querySelector('.embla__button--prev')
+        const nextBtnNode = emblaNode.querySelector('.embla__button--next')
+        const dotsNode = emblaNode.querySelector('.embla__dots')
+        
+        
+        if(viewportNode){
+            const emblaApi = EmblaCarousel(viewportNode as HTMLElement, OPTIONS)
+
+            const removePrevNextBtnsClickHandlers = addPrevNextBtnsClickHandlers(
+            emblaApi,
+            prevBtnNode,
+            nextBtnNode
+            )
+            const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+            emblaApi,
+            dotsNode
+            )
+
+            emblaApi.on('destroy', removePrevNextBtnsClickHandlers)
+            emblaApi.on('destroy', removeDotBtnsAndClickHandlers)
+        }
+        
+    }
     
-}
+</script>
