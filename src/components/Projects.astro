@@ -105,7 +105,6 @@ import Stro from "../icons/Stro.astro"
         {
             title: 'JavaChess - A chess made in java',
             description: 'Development of a two-player chess game in Java, encompassing the creation of a functional chess engine and a graphical user interface (GUI) for an engaging user experience. The goal is to provide players with a complete chess experience.',
-            link: 'https://github.com/MJoDev/JavaChess',
             github: 'https://github.com/MJoDev/JavaChess',
             image: '/projects/chess.png',
             tags: [TAGS.JAVA]
@@ -127,7 +126,7 @@ import Stro from "../icons/Stro.astro"
     <div class="embla__viewport">
       <div class="embla__container px-4 pl-4 ">       
         {
-            (PROJECTS.map(({title, github, description, tags, image}) => (
+            (PROJECTS.map(({title, github, description, tags, image, link}) => (
                 <article class="embla__slide">
                     <div>
                     <h3 class="text-2xl font-semibold mb-2">{title}</h3>
@@ -149,6 +148,10 @@ import Stro from "../icons/Stro.astro"
                     {github && <span class="mt-2 mb-2 flex">
                         <a href={github} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 bg-gray-700 text-white hover:py-1.5 hover:px-2.5 hover:bg-gray-600 transition-all`}><Github class="size-4"/>Github Repository</a>
                     </span>}
+                    {link && <span class="mt-2 mb-2 flex">
+                        <a href={link} target="_blank" rel="noopener noreferrer" class={`flex gap-x-2 rounded-full text-xs py-1 px-2 text-black hover:py-1.5 hover:px-2.5 hover:bg-gray-600 transition-all`}><Stro class="size-4"/>Web Page</a>
+                    </span>
+                        }
                 </article>
             )) )
         }
