@@ -10,41 +10,59 @@
 	import BriefCase from '../icons/BriefCase.astro';
 	import CodeIcon from '../icons/Code.astro';
 	import Projects from '../components/Projects.astro';
+	import Cv from '../icons/Cv.astro';
+import Technologies from '../components/Technologies.astro';
 ---
 
 <Layout title="Moisés Jimenez Portfolio - Full-Stack Developer" description="Hire Moises Jimenez to create your web application. Full-Stack developer specialized in creating creative applications and solutions.">
-	<main class="px-2">
-		<SectionContainer class="py-44 pb-21">
-			<h1 class="lg:text-5xl font-bold flex-row gap-x-4 pb-6 text-2xl">Hey, I'm <span id="text-container"></span><a href="https://linkedin.com/in/stoppedmjdev" target="_blank" class="flex justify-center items-center"></a></h1>
-			<h2 class="lg:text-xl text-wrap">4 years of experience. Full-Stack Developer based in Barinas, Venezuela. <span class="opacity-80">I specialize in creating applications and creative solutions. </span> </h2>
-			<Badge>Available for work.</Badge>
-			<nav class="flex gap-2 mt-4 flex-wrap">
-				<SocialPill href="https://www.linkedin.com/in/stoppedmjdev">
-					<LinkedIn class=" size-4 lg:size-6"/>
-					LinkedIn
-				</SocialPill>
-				<SocialPill href="https://github.com/MJoDev">
-					<Github class="size-6"/>
-					Github
-				</SocialPill>
-				<SocialPill href="mailto:stoppedmjdev@gmail.com">
-					<MailUp class="size-6"/>
-					stoppedmjdev@gmail.com
-				</SocialPill>
+	<main class="w-full">
+		<SectionContainer class="h-screen flex flex-col justify-center items-center">
+			<h1 class="lg:text-6xl font-bold flex-row gap-x-4 pb-6 text-4xl text-center">Hey, I'm <span id="text-container"></span><a href="https://linkedin.com/in/stoppedmjdev" target="_blank" class="flex justify-center items-center"></a></h1>
+			<h2 class="lg:text-xl text-lg text-wrap text-center">Full-Stack Developer | <span class="opacity-80">MEAN, MERN and Python specialist</span> </h2>
+			<Badge class="mt-4 items-center flex">Available for work.</Badge>
+			<nav class="flex gap-4 mt-4 flex-wrap justify-center">
+				<a href="https://linkedin.com/in/stoppedmjdev" target="_blank"><LinkedIn class="size-8 hover:scale-110 cursor-pointer transition-transform" ></LinkedIn></a>
+				<a href="https://docs.google.com/document/d/1CJf3ah4Pc_G7_IS_6DxoebdjcKwmV2deYnBZyCWFQ4g/edit?usp=sharing" target="_blank"><Cv class="size-8 hover:scale-110 cursor-pointer transition-transform"></Cv></a>
+				<a  href="https://github.com/stoppedmjdev" target="_blank"><Github class="size-8 hover:scale-110 cursor-pointer transition-transform"></Github></a>
 			</nav>	
 		</SectionContainer>
-		<SectionContainer id="experience" class="pb-12">
-			<h2 class="text-2xl front-semibold mb-8 flex gap-x-2 items-center"> 
-			<BriefCase class="size-6"/>
-			Laboral Experience</h2>
-			<Experience/>
+		<SectionContainer id="projects" class="w-full bg-white py-8 pb-40 ">
+			<h2 class="text-2xl font-bold mb-8 flex gap-x-2 items-center text-center justify-center mt-4"> 
+				<CodeIcon class="size-8"/>
+				Featured Projects</h2>
+				<Projects count={3}/>
 		</SectionContainer>
-		<SectionContainer id="projects" class="py-10">
-			<h2 class="text-2xl front-semibold mb-8 flex gap-x-2 items-center"> 
-				<CodeIcon class="size-6"/>
-				Projects</h2>
-				
-			<Projects/>
+		<SectionContainer id="about" class="w-full bg-white py-18 pb-40 ">
+			<div class="flex flex-col md:flex-row gap-8 items-center justify-center mx-auto max-w-screen-md">
+				<div class="flex-shrink-0 md:w-1/2 w-full p-4">
+					<img src="https://pbs.twimg.com/profile_images/1786723102933569536/dcTx3f6M_400x400.jpg" alt="Moisés Jimenez" class="w-full h-auto rounded-lg object-cover shadow-lg">
+				</div>
+				<div class="flex flex-col gap-y-4 md:w-1/2 w-full p-4">
+					<h2 class="text-2xl font-bold mb-4 flex gap-x-2 items-center">About Me</h2>
+					<p class="opacity-80">I'm a Systems Engineering student, currently in the third year of the degree, at <strong>Universidad Santa Maria</strong>. I have participated in different teams for application development, working as a full stack developer.</p>
+					<div class="flex gap-4 mt-4">
+						<a href="https://docs.google.com/document/d/1CJf3ah4Pc_G7_IS_6DxoebdjcKwmV2deYnBZyCWFQ4g/edit?usp=sharing" target="_blank" class="px-4 py-2 text-white bg-black rounded-lg hover:bg-green-800 transition">Download CV</a>
+						<a href="#contact" class="px-4 py-2 text-white bg-gray-600 rounded-lg hover:bg-gray-800 transition">Contact</a>
+					</div>
+				</div>
+			</div>
+		</SectionContainer>
+		<SectionContainer id="technologies" class="w-full bg-white py-8 pb-40">
+			<h2 class="text-2xl font-bold mb-8 flex gap-x-2 items-center text-center justify-center"> 
+				Technologies
+			</h2>
+			<Technologies/>
+		</SectionContainer>
+		<SectionContainer id="contact" class="w-full bg-white py-8 pb-20">
+			<h2 class="text-2xl font-bold mb-8 flex gap-x-2 items-center text-center justify-center mt-20"> 
+				Contact Me
+			</h2>
+			<div class="flex flex-col items-center py-4 justify-center">
+				<p class="text-xl opacity-80 mb-4 text-center">Feel free to reach out to me for any inquiries, collaborations or opportunities.</p>
+				<p class="opacity-70 mb-4">stoppedmjdev@gmail.com</p>
+				<p class="opacity-60 mb-4">+58 412-1536865</p>
+			</div>
+			
 		</SectionContainer>
 	</main>
 </Layout>
@@ -61,7 +79,7 @@
 </style>
 <script>
 	const textContainer = document.getElementById('text-container');
-	const texts = ['Moisés Jimenez', 'a Developer']; // Array de textos a mostrar
+	const texts = ['Moisés Jiménez', 'a Developer']; // Array de textos a mostrar
 	const typingSpeed = 50; // Velocidad de escritura en milisegundos
 
 	let index = 0;
