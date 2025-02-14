@@ -14,6 +14,8 @@ import Tailwind from "../icons/Tailwind.astro"
 import TypeScript from "../icons/TypeScript.astro"
 import Badge from "./Badge.astro"
 import Stro from '../icons/Stro.astro';
+import Python from "../icons/Python.astro"
+import Sqlite from "../icons/Sqlite.astro"
 
 interface Props{
     count: number
@@ -86,9 +88,26 @@ interface Props{
             name: 'Astro',
             class: 'bg-white',
             icon: Stro
+        },
+        PYTHON: {
+            name: 'Python',
+            class: 'bg-white',
+            icon: Python
+        },
+        SQLITE: {
+            name: 'SQLite',
+            class: 'bg-white',
+            icon: Sqlite
         }
     }
     const PROJECTS = [
+        {
+            title: 'Pythonfy',
+            description: 'A music player made with Flask and NextJS in pre-beta development phase, based on the idea of ​​using a webview like Spotify. It currently contains all the functional features of a music player.',
+            github: 'https://github.com/MJoDev/Pythonfy',
+            image: '/projects/pythonfy.png',
+            tags: [TAGS.PYTHON, TAGS.NEXT, TAGS.SQLITE]
+        },
         {
             title: 'NeoIrr',
             description: 'A web application for health device control, It is a web API designed to interact with a device that has two sensors: one for linear positioning and another that measures the level of irradiance in the blue spectrum of light.',
