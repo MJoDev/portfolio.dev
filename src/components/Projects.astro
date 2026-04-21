@@ -15,163 +15,135 @@ import TypeScript from "../icons/TypeScript.astro"
 import Stro from '../icons/Stro.astro';
 import Python from "../icons/Python.astro"
 import Sqlite from "../icons/Sqlite.astro"
+import { getLang, useTranslations } from '../i18n/ui';
+import type { Lang } from '../i18n/ui';
 
-interface Props{
-    count: number
+interface Props {
+    count: number;
+    lang?: Lang;
 }
 
+const lang: Lang = Astro.props.lang ?? getLang(Astro.url);
+const t = useTranslations(lang);
 
-    const TAGS = {
-        ANGULAR: {
-            name: 'Angular',
-            class: 'bg-white',
-            icon: Angular
-        },
-        HTML: {
-            name: 'HTML',
-            class: 'bg-white',
-            icon: HTML
-        },
-        CSS: {
-            name: 'CSS',
-            class: 'bg-white',
-            icon: CSSIcon
-        }
-        ,
-        TAILWIND: {
-            name: 'Tailwind CSS',
-            class: 'bg-white',
-            icon: Tailwind
-        },
-        JAVA: {
-            name: 'Java',
-            class: 'bg-white',
-            icon: Java
-        },
-        JAVASCRIPT: {
-            name: 'JavaScript',
-            class: 'bg-white',
-            icon: JavaScript
-        },
-        BOOTSTRAP: {
-            name: 'Bootstrap',
-            class: 'bg-white',
-            icon: Bootstrap
-        },
-        NODEJS: {
-            name: 'Node.Js',
-            class: 'bg-white',
-            icon: NodeJs
-        },
-        MONGODB: {
-            name: 'MongoDB',
-            class: 'bg-white',
-            icon: MongoDB
-        },
-        TYPESCRIPT: {
-            name: 'TypeScript',
-            class: 'bg-white',
-            icon: TypeScript
-        },
-        NEXT: {
-            name: 'Next.js',
-            class: 'bg-white',
-            icon: Nextjs
-        },
-        REACT: {
-            name: 'React',
-            class: 'bg-white',
-            icon: React
-        },
-        ASTRO: {
-            name: 'Astro',
-            class: 'bg-white',
-            icon: Stro
-        },
-        PYTHON: {
-            name: 'Python',
-            class: 'bg-white',
-            icon: Python
-        },
-        SQLITE: {
-            name: 'SQLite',
-            class: 'bg-white',
-            icon: Sqlite
-        }
-    }
-    const PROJECTS = [
-        {
-            title: 'Rack',
-            description: 'Rack SaaS is a low-cost, intuitive web POS and unified inventory management solution for small merchants. It is portable across devices (PC, mobile, tablet) and enables scalable, centralized growth for multiple branches, moving businesses past inefficient manual methods.',
-            image: '/projects/rack.png',
-            tags: [TAGS.REACT, TAGS.NEXT, TAGS.TAILWIND, TAGS.PYTHON]
-        },
-        {
-            title: 'Pythonfy',
-            description: 'A music player made with Flask and NextJS in pre-beta development phase, based on the idea of ​​using a webview like Spotify. It currently contains all the functional features of a music player.',
-            github: 'https://github.com/MJoDev/Pythonfy',
-            image: '/projects/pythonfy.png',
-            tags: [TAGS.PYTHON, TAGS.NEXT, TAGS.SQLITE]
-        },
-        {
-            title: 'NeoIrr',
-            description: 'A web application for health device control, It is a web API designed to interact with a device that has two sensors: one for linear positioning and another that measures the level of irradiance in the blue spectrum of light.',
-            image: '/projects/neoirr.png',
-            tags: [TAGS.REACT, TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT,  TAGS.BOOTSTRAP, TAGS.TAILWIND]
-        },
-        {
-            title: 'SharkTAInk',
-            description: 'A chatbot that allows AI agent creation, real-time conversation with agents, connection and payments with the Solana network. For a client on Fiverr. Docker and AWS EC2 were used for deployment. user creation, image uploads, customization and bio creation.',
-            image: '/projects/sharktaink.png',
-            tags: [TAGS.NEXT, TAGS.JAVASCRIPT, TAGS.MONGODB]
-        },
-        {
-            title: 'Economics Dashboard',
-            description: 'A dashboard for a client who was looking to connect their backend in a more modern way. Responsible for the development of the entire frontend and, based on an API, building different graphs that help with decision making. Building a login and using JWT.',
-            image: '/projects/dashb.png',
-            tags: [TAGS.NEXT, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.TAILWIND]
-        },
-        {
-            title: 'Attendance Control System',
-            description: 'This project is a web application developed with Angular CLI 16.1.6, designed to facilitate attendance tracking through the use of QR codes. Its main objective is to optimize the process of registering attendance at events, classes, and other activities.',
-            image: '/projects/chrono.png',
-            tags: [ TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND]
-        },
-        {
-            title: 'Livestock Control System',
-            description: 'This project is a Livestock Control System developed using the MEAN stack for "La Hacienda" farm. The system is designed to efficiently manage and monitor livestock, facilitating tasks such as tracking animal health, breeding, and overall farm productivity.',
-            image: '/projects/live.png',
-            tags: [TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND]
-        },
-        {
-            title: 'JavaChess - A chess made in java',
-            description: 'Development of a two-player chess game in Java, encompassing the creation of a functional chess engine and a graphical user interface (GUI) for an engaging user experience. The goal is to provide players with a complete chess experience.',
-            github: 'https://github.com/MJoDev/JavaChess',
-            image: '/projects/chess.png',
-            tags: [TAGS.JAVA]
-        },
-        {
-            title: 'AstroPaint - A Micorsoft paint made in Astro',
-            description: 'AstroPaint is a lightweight digital painting application, developed in just 30 minutes using Astro, Core JavaScript, HTML and CSS. The goal was to demonstrate rapid development capabilities while focusing on core functionalities.',
-            link: 'https://astropaint.netlify.app/',
-            github: 'https://github.com/MJoDev/AstroPaint',
-            image: '/projects/astropaint.png',
-            tags: [TAGS.JAVASCRIPT, TAGS.HTML, TAGS.CSS, TAGS.ASTRO]
-        }
-    ]
+const TAGS = {
+    ANGULAR:    { name: 'Angular',      class: 'bg-white', icon: Angular },
+    HTML:       { name: 'HTML',         class: 'bg-white', icon: HTML },
+    CSS:        { name: 'CSS',          class: 'bg-white', icon: CSSIcon },
+    TAILWIND:   { name: 'Tailwind CSS', class: 'bg-white', icon: Tailwind },
+    JAVA:       { name: 'Java',         class: 'bg-white', icon: Java },
+    JAVASCRIPT: { name: 'JavaScript',   class: 'bg-white', icon: JavaScript },
+    BOOTSTRAP:  { name: 'Bootstrap',    class: 'bg-white', icon: Bootstrap },
+    NODEJS:     { name: 'Node.Js',      class: 'bg-white', icon: NodeJs },
+    MONGODB:    { name: 'MongoDB',      class: 'bg-white', icon: MongoDB },
+    TYPESCRIPT: { name: 'TypeScript',   class: 'bg-white', icon: TypeScript },
+    NEXT:       { name: 'Next.js',      class: 'bg-white', icon: Nextjs },
+    REACT:      { name: 'React',        class: 'bg-white', icon: React },
+    ASTRO:      { name: 'Astro',        class: 'bg-white', icon: Stro },
+    PYTHON:     { name: 'Python',       class: 'bg-white', icon: Python },
+    SQLITE:     { name: 'SQLite',       class: 'bg-white', icon: Sqlite },
+}
 
-    const count = Astro.props.count
+const PROJECTS = [
+    {
+        title: 'Rack',
+        description: {
+            en: 'Rack SaaS is a low-cost, intuitive web POS and unified inventory management solution for small merchants. It is portable across devices (PC, mobile, tablet) and enables scalable, centralized growth for multiple branches, moving businesses past inefficient manual methods.',
+            es: 'Rack SaaS es una solución web de punto de venta y gestión unificada de inventario de bajo costo e intuitiva para pequeños comerciantes. Es portátil en diferentes dispositivos (PC, móvil, tablet) y permite un crecimiento escalable y centralizado para múltiples sucursales.',
+        },
+        image: '/projects/rack.png',
+        tags: [TAGS.REACT, TAGS.NEXT, TAGS.TAILWIND, TAGS.PYTHON],
+    },
+    {
+        title: 'Pythonfy',
+        description: {
+            en: 'A music player made with Flask and NextJS in pre-beta development phase, based on the idea of using a webview like Spotify. It currently contains all the functional features of a music player.',
+            es: 'Un reproductor de música creado con Flask y NextJS en fase de desarrollo pre-beta, basado en la idea de usar una webview como Spotify. Actualmente contiene todas las funcionalidades de un reproductor de música.',
+        },
+        github: 'https://github.com/MJoDev/Pythonfy',
+        image: '/projects/pythonfy.png',
+        tags: [TAGS.PYTHON, TAGS.NEXT, TAGS.SQLITE],
+    },
+    {
+        title: 'NeoIrr',
+        description: {
+            en: 'A web application for health device control. It is a web API designed to interact with a device that has two sensors: one for linear positioning and another that measures the level of irradiance in the blue spectrum of light.',
+            es: 'Una aplicación web para el control de dispositivos de salud. Es una API web diseñada para interactuar con un dispositivo que tiene dos sensores: uno para posicionamiento lineal y otro que mide el nivel de irradiancia en el espectro azul de la luz.',
+        },
+        image: '/projects/neoirr.png',
+        tags: [TAGS.REACT, TAGS.NEXT, TAGS.TYPESCRIPT, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND],
+    },
+    {
+        title: 'SharkTAInk',
+        description: {
+            en: 'A chatbot that allows AI agent creation, real-time conversation with agents, and connection and payments with the Solana network. Built for a Fiverr client using Docker and AWS EC2 for deployment, with user creation, image uploads, customization and bio creation.',
+            es: 'Un chatbot que permite la creación de agentes de IA, conversación en tiempo real con agentes, y conexión y pagos con la red Solana. Desarrollado para un cliente en Fiverr usando Docker y AWS EC2 para el despliegue, con creación de usuarios, carga de imágenes, personalización y creación de bio.',
+        },
+        image: '/projects/sharktaink.png',
+        tags: [TAGS.NEXT, TAGS.JAVASCRIPT, TAGS.MONGODB],
+    },
+    {
+        title: 'Economics Dashboard',
+        description: {
+            en: 'A dashboard for a client who was looking to connect their backend in a more modern way. Responsible for the development of the entire frontend and, based on an API, building different graphs that help with decision making, including a login system using JWT.',
+            es: 'Un dashboard para un cliente que buscaba conectar su backend de forma más moderna. Responsable del desarrollo de todo el frontend y, basándose en una API, construcción de gráficas que ayudan a la toma de decisiones, incluyendo un login con JWT.',
+        },
+        image: '/projects/dashb.png',
+        tags: [TAGS.NEXT, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.TAILWIND],
+    },
+    {
+        title: 'Attendance Control System',
+        description: {
+            en: 'A web application built with Angular CLI 16.1.6, designed to facilitate attendance tracking through QR codes. Its main objective is to optimize the process of registering attendance at events, classes, and other activities.',
+            es: 'Una aplicación web desarrollada con Angular CLI 16.1.6, diseñada para facilitar el control de asistencia mediante códigos QR. Su objetivo principal es optimizar el registro de asistencia en eventos, clases y otras actividades.',
+        },
+        image: '/projects/chrono.png',
+        tags: [TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND],
+    },
+    {
+        title: 'Livestock Control System',
+        description: {
+            en: 'A Livestock Control System developed using the MEAN stack for "La Hacienda" farm. The system efficiently manages and monitors livestock, facilitating tasks such as tracking animal health, breeding, and overall farm productivity.',
+            es: 'Un Sistema de Control Ganadero desarrollado con el stack MEAN para la hacienda "La Hacienda". El sistema gestiona y monitorea el ganado de manera eficiente, facilitando el seguimiento de la salud animal, reproducción y productividad general de la granja.',
+        },
+        image: '/projects/live.png',
+        tags: [TAGS.ANGULAR, TAGS.NODEJS, TAGS.TYPESCRIPT, TAGS.MONGODB, TAGS.HTML, TAGS.CSS, TAGS.JAVASCRIPT, TAGS.BOOTSTRAP, TAGS.TAILWIND],
+    },
+    {
+        title: 'JavaChess',
+        description: {
+            en: 'A two-player chess game developed in Java, encompassing a functional chess engine and a graphical user interface (GUI) for an engaging user experience.',
+            es: 'Un juego de ajedrez para dos jugadores desarrollado en Java, que incluye un motor de ajedrez funcional y una interfaz gráfica de usuario (GUI) para una experiencia atractiva.',
+        },
+        github: 'https://github.com/MJoDev/JavaChess',
+        image: '/projects/chess.png',
+        tags: [TAGS.JAVA],
+    },
+    {
+        title: 'AstroPaint',
+        description: {
+            en: 'A lightweight digital painting application developed in 30 minutes using Astro, core JavaScript, HTML and CSS. The goal was to demonstrate rapid development capabilities while focusing on core functionalities.',
+            es: 'Una aplicación de pintura digital ligera desarrollada en 30 minutos usando Astro, JavaScript puro, HTML y CSS. El objetivo fue demostrar capacidades de desarrollo rápido enfocándose en las funcionalidades básicas.',
+        },
+        link: 'https://astropaint.netlify.app/',
+        github: 'https://github.com/MJoDev/AstroPaint',
+        image: '/projects/astropaint.png',
+        tags: [TAGS.JAVASCRIPT, TAGS.HTML, TAGS.CSS, TAGS.ASTRO],
+    },
+]
+
+const { count } = Astro.props;
 ---
 
 <div class="justify-center gap-6 container mx-auto flex flex-wrap">
     {PROJECTS.slice(0, count).map(({ title, github, description, tags, image, link }) => (
         <div class="w-96 h-auto flex flex-col shadow-lg bg-slate-100 rounded-lg hover:scale-105 transition mb-10 filter grayscale hover:grayscale-0">
             <div class="w-full">
-                <img src={image} alt={`Screenshot of the project: ${title}`} class="rounded-t-lg shadow-lg w-full h-full object-cover" />
+                <img src={image} alt={`${t('projects.screenshotAlt')}: ${title}`} class="rounded-t-lg shadow-lg w-full h-full object-cover" />
             </div>
             <div class="flex flex-col gap-y-4 p-6">
                 <h3 class="text-xl font-bold">{title}</h3>
-                <p class="text-base text-gray-600">{description}</p>
+                <p class="text-base text-gray-600">{description[lang]}</p>
                 <div class="flex flex-wrap gap-2 mt-2">
                     {tags.slice(0, 3).map((tag) => (
                         <span class="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium text-gray-600 bg-gray-200 rounded-full">
@@ -180,31 +152,24 @@ interface Props{
                         </span>
                     ))}
                 </div>
-                {
-                    github && (
-                        <a href={github} target="_blank" class="flex items-center gap-x-2 rounded-lg border opacity-50 border-black py-2 px-4 hover:opacity-100 ">
-                            <Github class="size-6"></Github>View Code
-                        </a>
-                    )
-                }
-                {
-                    link && (
-                        <a href={link} target="_blank" class="flex items-center gap-x-2 rounded-lg border opacity-50 border-black py-2 px-4 hover:opacity-100 ">
-                            Live Demo
-                        </a>    
-                    )
-                }
+                {github && (
+                    <a href={github} target="_blank" class="flex items-center gap-x-2 rounded-lg border opacity-50 border-black py-2 px-4 hover:opacity-100">
+                        <Github class="size-6" />{t('projects.viewCode')}
+                    </a>
+                )}
+                {link && (
+                    <a href={link} target="_blank" class="flex items-center gap-x-2 rounded-lg border opacity-50 border-black py-2 px-4 hover:opacity-100">
+                        {t('projects.liveDemo')}
+                    </a>
+                )}
             </div>
         </div>
     ))}
-    {
-        count === 3 && (
-            <div class="w-full flex justify-center mt-6">
-                <a href="/projects" class="px-6 py-2 text-white bg-black rounded-lg hover:bg-green-700 transition">
-                    View More Projects
-                </a>
-            </div>
-        ) 
-    }
+    {count === 3 && (
+        <div class="w-full flex justify-center mt-6">
+            <a href={lang === 'es' ? '/es/projects' : '/projects'} class="px-6 py-2 text-white bg-black rounded-lg hover:bg-green-700 transition">
+                {t('projects.viewMore')}
+            </a>
+        </div>
+    )}
 </div>
-

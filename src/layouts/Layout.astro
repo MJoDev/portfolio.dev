@@ -2,17 +2,19 @@
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import '@fontsource-variable/onest'
+import type { Lang } from '../i18n/ui';
 
 interface Props {
 	title: string;
 	description: string;
+	lang?: Lang;
 }
 
-const { description, title } = Astro.props;
+const { description, title, lang = 'en' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />

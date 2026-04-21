@@ -1,31 +1,81 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
+import { getLang } from '../i18n/ui';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+    lang?: Lang;
+}
+
+const lang: Lang = Astro.props.lang ?? getLang(Astro.url);
 
 const EXPERIENCE = [
-    {date: 'Present',
-    title: 'Freelancer - Looking for work ',
-    description: 'I currently develop applications by order or contract, looking for work'},
-    {date: 'May 2024 - August 2024',
-    title: 'NeoIrr - Fullstack Engineer ',
-    description: 'Contract. In charge of the software of an Arduino device that interacts with a web page through Bluetooth.'},
-    {date: 'December 2022 - February 2024',
-    title: 'Principal Backend Engineer',
-    description: 'Responsible for the platform, server and design established in the backend of an attendance control service. Implementation of continuous integration and deployment measures.'},
-    {date: 'January - November 2022',
-    title: 'FullStack developer',
-    description: 'General responsible for the entire livestock control web application.'},
-    {date: 'January 2020 - December 2021',
-    title: 'The beginning',
-    description: 'I started my career as a developer studying different technologies and resources.'},
+    {
+        date: 'Present',
+        title: {
+            en: 'Freelancer - Looking for work',
+            es: 'Freelancer - Buscando trabajo',
+        },
+        description: {
+            en: 'I currently develop applications by order or contract, looking for work.',
+            es: 'Actualmente desarrollo aplicaciones por encargo o contrato, buscando trabajo.',
+        },
+    },
+    {
+        date: 'May 2024 - August 2024',
+        title: {
+            en: 'NeoIrr - Fullstack Engineer',
+            es: 'NeoIrr - Ingeniero Fullstack',
+        },
+        description: {
+            en: 'Contract. In charge of the software of an Arduino device that interacts with a web page through Bluetooth.',
+            es: 'Contrato. Encargado del software de un dispositivo Arduino que interactúa con una página web a través de Bluetooth.',
+        },
+    },
+    {
+        date: 'December 2022 - February 2024',
+        title: {
+            en: 'Principal Backend Engineer',
+            es: 'Ingeniero Backend Principal',
+        },
+        description: {
+            en: 'Responsible for the platform, server and design established in the backend of an attendance control service. Implementation of continuous integration and deployment measures.',
+            es: 'Responsable de la plataforma, servidor y diseño establecido en el backend de un servicio de control de asistencia. Implementación de medidas de integración y despliegue continuo.',
+        },
+    },
+    {
+        date: 'January - November 2022',
+        title: {
+            en: 'FullStack Developer',
+            es: 'Desarrollador FullStack',
+        },
+        description: {
+            en: 'General responsible for the entire livestock control web application.',
+            es: 'Responsable general de toda la aplicación web de control ganadero.',
+        },
+    },
+    {
+        date: 'January 2020 - December 2021',
+        title: {
+            en: 'The beginning',
+            es: 'El comienzo',
+        },
+        description: {
+            en: 'I started my career as a developer studying different technologies and resources.',
+            es: 'Comencé mi carrera como desarrollador estudiando diferentes tecnologías y recursos.',
+        },
+    },
 ]
 ---
-<ol class="relative border-s border-black dark:border-black-700 ml-2"> 
-    {
-        EXPERIENCE.map((experience) => (
-        <li class="mb-10 ms-4">
-            <ExperienceItem { ... experience}/>
-        </li>
-        ))
-    }                 
-</ol>
 
+<ol class="relative border-s border-black dark:border-black-700 ml-2">
+    {EXPERIENCE.map((experience) => (
+        <li class="mb-10 ms-4">
+            <ExperienceItem
+                date={experience.date}
+                title={experience.title[lang]}
+                description={experience.description[lang]}
+            />
+        </li>
+    ))}
+</ol>

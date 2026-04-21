@@ -1,11 +1,31 @@
+---
+import { getLang, useTranslations, getNavPrefix } from '../i18n/ui';
+
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const prefix = getNavPrefix(lang);
+
+const path = Astro.url.pathname;
+const altUrl = lang === 'es'
+  ? path.replace(/^\/es/, '') || '/'
+  : `/es${path === '/' ? '' : path}`;
+---
+
 <header class="flex justify-between items-center py-5 px-4 w-full max-w-[1280px] mx-auto">
     <img class="rounded-full w-12 h-12" src="/1738782481694.jpg" alt="Moisés Jimenez">
 
-    <nav class="flex flex-wrap gap-x-4 opacity-80 text-sm sm:text-base">
-        <a href="/" class="hover:underline">Home</a>
-        <a href="/#projects" class="hover:underline">Projects</a>
-        <a href="/#about" class="hover:underline">About</a>
-        <a href="/#technologies" class="hover:underline">Technologies</a>
-        <a href="/#contact" target="_blank" class="hover:underline">Contact</a>
+    <nav class="flex flex-wrap gap-x-4 opacity-80 text-sm sm:text-base items-center">
+        <a href={`${prefix}/`} class="hover:underline">{t('nav.home')}</a>
+        <a href={`${prefix}/#projects`} class="hover:underline">{t('nav.projects')}</a>
+        <a href={`${prefix}/#about`} class="hover:underline">{t('nav.about')}</a>
+        <a href={`${prefix}/#technologies`} class="hover:underline">{t('nav.technologies')}</a>
+        <a href={`${prefix}/#contact`} class="hover:underline">{t('nav.contact')}</a>
+        <a
+            href={altUrl}
+            aria-label={t('lang.switchLabel')}
+            class="ml-2 px-2 py-0.5 border border-current rounded text-xs font-semibold hover:bg-black hover:text-white transition-colors"
+        >
+            {t('lang.switch')}
+        </a>
     </nav>
 </header>

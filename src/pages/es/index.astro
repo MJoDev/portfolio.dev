@@ -1,23 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Badge from '../components/Badge.astro';
-import LinkedIn from '../icons/LinkedIn.astro'
-import Github from '../icons/Github.astro';
-import SectionContainer from '../components/SectionContainer.astro';
-import CodeIcon from '../icons/Code.astro';
-import Projects from '../components/Projects.astro';
-import Cv from '../icons/Cv.astro';
-import Technologies from '../components/Technologies.astro';
-import { useTranslations } from '../i18n/ui';
+import Layout from '../../layouts/Layout.astro';
+import Badge from '../../components/Badge.astro';
+import LinkedIn from '../../icons/LinkedIn.astro';
+import Github from '../../icons/Github.astro';
+import SectionContainer from '../../components/SectionContainer.astro';
+import CodeIcon from '../../icons/Code.astro';
+import Projects from '../../components/Projects.astro';
+import Cv from '../../icons/Cv.astro';
+import Technologies from '../../components/Technologies.astro';
+import { useTranslations } from '../../i18n/ui';
 
-const lang = 'en' as const;
+const lang = 'es' as const;
 const t = useTranslations(lang);
 ---
 
 <Layout title={t('meta.title')} description={t('meta.description')} lang={lang}>
 	<main class="w-full">
 		<SectionContainer class="h-screen flex flex-col justify-center items-center">
-			<h1 class="lg:text-6xl font-bold flex-row gap-x-4 pb-6 text-4xl text-center">Hey, I'm <span id="text-container"></span></h1>
+			<h1 class="lg:text-6xl font-bold flex-row gap-x-4 pb-6 text-4xl text-center">Hola, soy <span id="text-container"></span></h1>
 			<h2 class="lg:text-xl text-lg text-wrap text-center">{t('hero.role')} | <span class="opacity-80">{t('hero.specialization')}</span></h2>
 			<Badge class="mt-4 items-center flex">{t('hero.available')}</Badge>
 			<nav class="flex gap-4 mt-4 flex-wrap justify-center">
