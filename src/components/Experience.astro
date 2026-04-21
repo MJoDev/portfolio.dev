@@ -11,36 +11,47 @@ const lang: Lang = Astro.props.lang ?? getLang(Astro.url);
 
 const EXPERIENCE = [
     {
-        date: 'Present',
+        date: 'March 2026 - Present',
         title: {
-            en: 'Freelancer - Looking for work',
-            es: 'Freelancer - Buscando trabajo',
+            en: 'Full-Stack Engineer — Upwork',
+            es: 'Ingeniero Full-Stack — Upwork',
         },
         description: {
-            en: 'I currently develop applications by order or contract, looking for work.',
-            es: 'Actualmente desarrollo aplicaciones por encargo o contrato, buscando trabajo.',
+            en: 'Freelance full-stack development on Upwork. Currently building a media messaging & AI behavior platform (Next.js, MongoDB, Supabase). Rising Talent badge with $5K+ in earnings and 4.5-star average.',
+            es: 'Desarrollo full-stack freelance en Upwork. Actualmente construyendo una plataforma de mensajería con IA (Next.js, MongoDB, Supabase). Insignia Rising Talent con más de $5K en ganancias y promedio de 4.5 estrellas.',
         },
     },
     {
-        date: 'May 2024 - August 2024',
+        date: 'April 2025 - April 2026',
         title: {
-            en: 'NeoIrr - Fullstack Engineer',
-            es: 'NeoIrr - Ingeniero Fullstack',
+            en: 'Tech Lead — Lagro',
+            es: 'Tech Lead — Lagro',
         },
         description: {
-            en: 'Contract. In charge of the software of an Arduino device that interacts with a web page through Bluetooth.',
-            es: 'Contrato. Encargado del software de un dispositivo Arduino que interactúa con una página web a través de Bluetooth.',
+            en: 'Led development, maintenance, architecture and scaling of Lagro\'s web platforms for the agricultural sector. Full-stack ownership of frontend (React, Vite) and backend (Node.js, PostgreSQL), applying microservices and efficient API design to handle high-volume data and user traffic.',
+            es: 'Lideré el desarrollo, mantenimiento, arquitectura y escalado de las plataformas web de Lagro para el sector agrícola. Responsabilidad full-stack del frontend (React, Vite) y backend (Node.js, PostgreSQL), aplicando microservicios y diseño eficiente de APIs para manejar alto volumen de datos y tráfico.',
+        },
+    },
+    {
+        date: 'February 2024 - May 2025',
+        title: {
+            en: 'Full-Stack Engineer — NeoIrr',
+            es: 'Ingeniero Full-Stack — NeoIrr',
+        },
+        description: {
+            en: 'In charge of the software for an Arduino device that interacts with a web page through Bluetooth. Responsible for the frontend, API connection and guided the development of the Arduino code.',
+            es: 'Encargado del software de un dispositivo Arduino que interactúa con una página web a través de Bluetooth. Responsable del frontend, la conexión con la API web Bluetooth y guió el desarrollo del código Arduino.',
         },
     },
     {
         date: 'December 2022 - February 2024',
         title: {
-            en: 'Principal Backend Engineer',
-            es: 'Ingeniero Backend Principal',
+            en: 'Principal Backend Engineer — QronosTech',
+            es: 'Ingeniero Backend Principal — QronosTech',
         },
         description: {
-            en: 'Responsible for the platform, server and design established in the backend of an attendance control service. Implementation of continuous integration and deployment measures.',
-            es: 'Responsable de la plataforma, servidor y diseño establecido en el backend de un servicio de control de asistencia. Implementación de medidas de integración y despliegue continuo.',
+            en: 'Responsible for the backend platform of an attendance control service. Designed the REST API, managed the database and cloud services. Reduced bug rate in production by 60% with unit and integration tests, and improved attendance control waiting time by 40%.',
+            es: 'Responsable de la plataforma backend de un servicio de control de asistencia. Diseñé la REST API, administré la base de datos y servicios cloud. Reduje la tasa de bugs en producción un 60% con pruebas unitarias e integración, y mejoré el tiempo de espera en el control de asistencia un 40%.',
         },
     },
     {
@@ -68,14 +79,81 @@ const EXPERIENCE = [
 ]
 ---
 
-<ol class="relative border-s border-black dark:border-black-700 ml-2">
-    {EXPERIENCE.map((experience) => (
-        <li class="mb-10 ms-4">
-            <ExperienceItem
-                date={experience.date}
-                title={experience.title[lang]}
-                description={experience.description[lang]}
-            />
-        </li>
-    ))}
-</ol>
+<div class="experience-wrapper relative">
+    <div class="timeline-line absolute left-[7px] top-0 w-0.5 bg-gray-200 origin-top" style="height: 100%;"></div>
+    <div class="timeline-progress absolute left-[7px] top-0 w-0.5 bg-black origin-top scale-y-0 transition-none" id="timeline-progress" style="height: 100%;"></div>
+
+    <ol class="relative ml-4 space-y-8">
+        {EXPERIENCE.map((experience, i) => (
+            <li
+                class="ms-6 experience-item"
+                style={`--delay: ${i * 120}ms`}
+            >
+                <ExperienceItem
+                    date={experience.date}
+                    title={experience.title[lang]}
+                    description={experience.description[lang]}
+                />
+            </li>
+        ))}
+    </ol>
+</div>
+
+<style>
+    .experience-item {
+        opacity: 0;
+        transform: translateX(32px);
+        transition: opacity 0.6s ease var(--delay), transform 0.6s ease var(--delay);
+    }
+
+    .experience-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    #timeline-progress {
+        transition: transform 0.1s linear;
+    }
+</style>
+
+<script>
+    function initExperience() {
+        const items = document.querySelectorAll<HTMLElement>('.experience-item');
+        const progressLine = document.getElementById('timeline-progress') as HTMLElement | null;
+        const wrapper = document.querySelector('.experience-wrapper') as HTMLElement | null;
+
+        if (!progressLine || !wrapper) return;
+
+        // Scroll-driven timeline line
+        function updateProgress() {
+            const rect = wrapper!.getBoundingClientRect();
+            const windowH = window.innerHeight;
+            const start = windowH * 0.8;
+            const end = rect.height - windowH * 0.2;
+            const scrolled = Math.min(Math.max(-rect.top + start, 0), end);
+            const progress = scrolled / end;
+            progressLine!.style.transform = `scaleY(${progress})`;
+        }
+
+        // Reveal items on scroll
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+
+        items.forEach((item) => observer.observe(item));
+
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+    }
+
+    document.addEventListener('astro:page-load', initExperience);
+    initExperience();
+</script>

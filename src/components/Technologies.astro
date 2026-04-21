@@ -1,34 +1,32 @@
 ---
-import Angular from "../icons/Angular.astro";
-import Docker from "../icons/Docker.astro";
-import Express from "../icons/Express.astro";
-import Git from "../icons/Git.astro";
-import MongoDB from "../icons/MongoDB.astro";
-import NodeJs from "../icons/NodeJs.astro";
+import FastApi from "../icons/FastApi.astro";
+import Django from "../icons/Django.astro";
+import Postgres from "../icons/Postgres.astro";
 import Python from "../icons/Python.astro";
-import React from "../icons/React.astro";
+import Docker from "../icons/Docker.astro";
+import Git from "../icons/Git.astro";
+import Nextjs from "../icons/Nextjs.astro";
+import Vite from "../icons/Vite.astro";
 
-  
 const technologies = [
-    { name: 'Node.js', icon: NodeJs},
-    { name: 'React', icon: React},
-    { name: 'Angular', icon: Angular},
-    { name: 'Python', icon: Python},
-    { name: 'MongoDB', icon: MongoDB},
-    { name: 'Express.js', icon: Express},
-    { name: 'Git', icon: Git},
-    { name: 'Docker', icon: Docker}
-  ];
+    { name: 'FastAPI',     icon: FastApi },
+    { name: 'Django',      icon: Django },
+    { name: 'PostgreSQL',  icon: Postgres },
+    { name: 'Python',      icon: Python },
+    { name: 'Docker',      icon: Docker },
+    { name: 'Git',         icon: Git },
+    { name: 'Next.js',     icon: Nextjs },
+    { name: 'Vite',        icon: Vite },
+];
 ---
 
 <div class="py-12 px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-      {technologies.map((tech) => (
-        <div class="flex flex-col items-center gap-2 hover:scale-110 transition">
-            
-          <tech.icon class="w-12 h-12"></tech.icon>
-          <span class="text-sm">{tech.name}</span>
-        </div>
-      ))}
+        {technologies.map((tech) => (
+            <div class="flex flex-col items-center gap-2 hover:scale-110 transition">
+                <tech.icon class="w-12 h-12" />
+                <span class="text-sm">{tech.name}</span>
+            </div>
+        ))}
     </div>
 </div>

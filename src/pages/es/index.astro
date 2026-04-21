@@ -8,6 +8,7 @@ import CodeIcon from '../../icons/Code.astro';
 import Projects from '../../components/Projects.astro';
 import Cv from '../../icons/Cv.astro';
 import Technologies from '../../components/Technologies.astro';
+import Experience from '../../components/Experience.astro';
 import { useTranslations } from '../../i18n/ui';
 
 const lang = 'es' as const;
@@ -46,6 +47,14 @@ const t = useTranslations(lang);
 						<a href="#contact" class="px-4 py-2 text-white bg-gray-600 rounded-lg hover:bg-gray-800 transition">{t('about.contact')}</a>
 					</div>
 				</div>
+			</div>
+		</SectionContainer>
+		<SectionContainer id="experience" class="w-full bg-white py-8 pb-40">
+			<h2 class="text-2xl font-bold mb-8 flex gap-x-2 items-center text-center justify-center">
+				{t('section.experience')}
+			</h2>
+			<div class="max-w-2xl mx-auto px-4">
+				<Experience lang={lang} />
 			</div>
 		</SectionContainer>
 		<SectionContainer id="technologies" class="w-full bg-white py-8 pb-40">
